@@ -1,6 +1,7 @@
 package com.tatva.service;
 
 import com.tatva.dto.User;
+import com.tatva.model.CompanyShare;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.kafka.core.KafkaTemplate;
 import org.springframework.kafka.support.SendResult;
@@ -14,7 +15,7 @@ public class KafkaMessagePublisher {
     @Autowired
     private KafkaTemplate<String,Object> template;
 
-    public void sendMessageToTopic(String message){
+    public void sendMessageToTopic(CompanyShare message){
         try {
             CompletableFuture<SendResult<String, Object>> future = template.send("companyShare", message);
             future.whenComplete((result, ex) -> {
