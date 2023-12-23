@@ -15,10 +15,10 @@ public class EventController {
     private KafkaMessagePublisher publisher;
 
     @GetMapping("/publish/{message}")
-    public ResponseEntity<?> publishMessage(@RequestBody User message) {
+    public ResponseEntity<?> publishMessage(@PathVariable String message) {
         try {
             for (int i = 0; i <= 100000; i++) {
-                publisher.sendMessageToTopic(message);
+                publisher.sendMessageToTopic(message + " : number : " + i);
             }
             return ResponseEntity.ok("message published successfully ..");
         } catch (Exception ex) {

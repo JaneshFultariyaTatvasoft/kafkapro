@@ -17,15 +17,23 @@ import java.util.Map;
 public class KafkaProducerConfig {
 
     @Bean
-    public NewTopic createTopic(){
+    public NewTopic createFirstTopic(){
         return new NewTopic("companyShare", 1, (short) 1);
+    }
+    @Bean
+    public NewTopic createSecondTopic(){
+        return new NewTopic("companyShareTransaction", 1, (short) 1);
+    }
+    @Bean
+    public NewTopic createThirdTopic(){
+        return new NewTopic("ipoListing", 1, (short) 1);
     }
 
     @Bean
     public Map<String,Object> producerConfig(){
         Map<String,Object> props=new HashMap<>();
         props.put(ProducerConfig.BOOTSTRAP_SERVERS_CONFIG,
-                "localhost:9092");
+                "192.168.226.137:9092");
         props.put(ProducerConfig.KEY_SERIALIZER_CLASS_CONFIG,
                 StringSerializer.class);
         props.put(ProducerConfig.VALUE_SERIALIZER_CLASS_CONFIG,
